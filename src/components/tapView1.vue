@@ -1,3 +1,3 @@
 <template>
-  <router-view />
+  <div>tap1</div>
 </template>
