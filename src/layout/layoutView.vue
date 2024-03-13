@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="layoutRoot">
-      <div class="headerRoot"><HeaderView /></div>
+      <div class="headerLayoutRoot"><HeaderView /></div>
       <router-view />
     </div>
   </main>
@@ -16,9 +16,10 @@ export default {
 .layoutRoot {
   display: flex;
   gap: 20px;
+  background-color: #e9ecef;
 }
-.headerRoot {
-  width: 200px;
+.headerLayoutRoot {
+  min-width: 300px;
   height: 100vh;
   background-color: #cccccc;
 }

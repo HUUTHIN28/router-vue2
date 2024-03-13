@@ -1,5 +1,6 @@
 export const URL = {
   LOGIN: "/log-in",
+  LOCATION: "/location",
 };
 export const narBar = [
   {

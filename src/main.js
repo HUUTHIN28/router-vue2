@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
+
 function registerBaseComponents() {
   // Import tất cả các file trong thư mục base-components
   const requireComponent = require.context(
@@ -66,7 +67,9 @@ Vue.directive(
   }
 );
 Vue.config.productionTip = false;
+
 Vue.use(createPinia());
+
 new Vue({
   router,
 

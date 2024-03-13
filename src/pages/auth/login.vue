@@ -4,7 +4,7 @@
     <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Login Form | CodingLab</title>
+      <title>Login .form | CodingLab</title>
       <link rel="stylesheet" href="style.css" />
       <link
         rel="stylesheet"
@@ -15,7 +15,7 @@
       <div class="container">
         <div class="wrapper">
           <div class="title"><span>Login Form</span></div>
-          <form action="#">
+          <div action="#" class="form">
             <div class="row">
               <i class="fas fa-user"></i>
               <input
@@ -34,34 +34,53 @@
                 required
               />
             </div>
+            <div v-if="mess" class="mess">
+              <div>{{ mess }}</div>
+            </div>
             <div class="pass"><a href="#">Forgot password?</a></div>
             <div class="row button">
-              <div @click="login">login</div>
+              <button @click="login" class="buttonLogin">login</button>
             </div>
             <div class="signup-link">
               Not a member? <a href="#">Signup now</a>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-      <!-- {{ clearToken }} -->
+      {{ clearToken }}
     </body>
   </html>
 </template>
 <script>
 import { useAuthStore } from "@/store/auth";
-
+// import { useToast } from "vue-toastification";
 export default {
   data: function () {
     return {
       email: "",
       password: "",
+      mess: "",
     };
   },
 
+  computed: {
+    clearToken: () => {
+      localStorage.clear("token");
+    },
+  },
   methods: {
     login() {
-      this.storeAuth.login({ email: this.email, password: this.password });
+      if (!this.email) {
+        return (this.mess = "Haven't entered email yet");
+      }
+      if (!this.password) {
+        return (this.mess = "Haven't entered password yet");
+      }
+      this.mess = "";
+      return this.storeAuth.login({
+        email: this.email,
+        password: this.password,
+      });
     },
   },
   setup() {
@@ -79,9 +98,17 @@ export default {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+.mess {
+  font-size: 12px;
+  color: red;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 .bodyLogin {
   background: #1abc9c;
   overflow: hidden;
+  height: 100vh;
 }
 ::selection {
   background: rgba(26, 188, 156, 0.3);
@@ -90,6 +117,14 @@ export default {
   max-width: 440px;
   padding: 0 20px;
   margin: 170px auto;
+}
+.buttonLogin {
+  height: 38px;
+  width: 100%;
+  background-color: #1abc9c;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
 }
 .wrapper {
   width: 100%;
@@ -108,15 +143,15 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.wrapper form {
+.wrapper .form {
   padding: 30px 25px 25px 25px;
 }
-.wrapper form .row {
+.wrapper .form .row {
   height: 45px;
   margin-bottom: 15px;
   position: relative;
 }
-.wrapper form .row input {
+.wrapper .form .row input {
   height: 100%;
   width: 100%;
   outline: none;
@@ -126,14 +161,14 @@ export default {
   font-size: 16px;
   transition: all 0.3s ease;
 }
-form .row input:focus {
+.form .row input:focus {
   border-color: #16a085;
   box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
 }
-form .row input::placeholder {
+.form .row input::placeholder {
   color: #999;
 }
-.wrapper form .row i {
+.wrapper .form .row i {
   position: absolute;
   width: 47px;
   height: 100%;
@@ -146,18 +181,18 @@ form .row input::placeholder {
   align-items: center;
   justify-content: center;
 }
-.wrapper form .pass {
+.wrapper .form .pass {
   margin: -8px 0 20px 0;
 }
-.wrapper form .pass a {
+.wrapper .form .pass a {
   color: #16a085;
   font-size: 17px;
   text-decoration: none;
 }
-.wrapper form .pass a:hover {
+.wrapper .form .pass a:hover {
   text-decoration: underline;
 }
-.wrapper form .button input {
+.wrapper .form .button input {
   color: #fff;
   font-size: 20px;
   font-weight: 500;
@@ -166,19 +201,19 @@ form .row input::placeholder {
   border: 1px solid #16a085;
   cursor: pointer;
 }
-form .button input:hover {
+.form .button input:hover {
   background: #12876f;
 }
-.wrapper form .signup-link {
+.wrapper .form .signup-link {
   text-align: center;
   margin-top: 20px;
   font-size: 17px;
 }
-.wrapper form .signup-link a {
+.wrapper .form .signup-link a {
   color: #16a085;
   text-decoration: none;
 }
-form .signup-link a:hover {
+.form .signup-link a:hover {
   text-decoration: underline;
 }
 </style>

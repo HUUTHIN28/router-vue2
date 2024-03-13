@@ -14,8 +14,16 @@ export default [
         },
       },
       {
+        path: "/location",
+        name: "location",
+        component: () => import("@/pages/location/locationListView.vue"),
+      },
+      {
         path: "/about",
         component: () => import("../../pages/about/layoutAbout.vue"),
+        meta: {
+          requiresAuth: true,
+        },
         children: [
           {
             path: "",

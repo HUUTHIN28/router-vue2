@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <main>
+  <div>
     <div>xin chao home{{ name }}</div>
     <span v-if="seen">Now you see me</span>
     <!-- <p>Using v-html directive: <span v-html="rawHtml"></span></p> -->
@@ -41,7 +41,7 @@
       thin
     </div>
     <div>{{ storeTodo.totalTodos }}</div>
-  </main>
+  </div>
 </template>
 <script>
 import HomeItem from "./homeItem.vue";

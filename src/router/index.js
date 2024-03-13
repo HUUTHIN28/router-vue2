@@ -17,7 +17,6 @@ const router = new VueRouter({
 });
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem("token");
-  console.log("token", token);
   if (to.meta.requiresAuth && !token) {
     next("login");
   } else {
