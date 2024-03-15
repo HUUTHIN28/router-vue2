@@ -20,7 +20,7 @@ export default {
   props: {
     data: Object,
   },
-  data: function () {
+  data() {
     return {
       status: "",
     };
@@ -30,12 +30,13 @@ export default {
 <style>
 .itemLocation {
   display: grid;
-  grid-template-columns: 5% 20% 30% 5% 30% 10%;
+  grid-template-columns: 5% 20% 25% 10% 30% 10%;
   gap: 10px;
   padding: 10px;
   align-items: center;
   border-bottom: 1px solid #dddddd;
   color: #8392ab;
+  padding-left: 10px;
 }
 .image {
   height: 40px;

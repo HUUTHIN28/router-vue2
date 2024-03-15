@@ -4,33 +4,44 @@
       <RouterLink
         v-if="status == value.path"
         :to="value.path"
-        :style="{ backgroundColor: '#fff' }"
+        :style="{
+          backgroundColor: '#fff',
+          boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+        }"
         class="itemNarBar"
       >
-        {{ value.name }}
+        <div
+          class="icon"
+          :style="{
+            backgroundColor: '#82d616',
+            color: '#fff',
+          }"
+        >
+          <component :is="value.icon"></component>
+        </div>
+        <b> {{ value.name }} </b>
       </RouterLink>
       <RouterLink v-else :to="value.path" class="itemNarBar">
+        <div class="icon"><component :is="value.icon"></component></div>
         {{ value.name }}
       </RouterLink>
     </div>
-
     <!-- <router-link to="/about/2">Go to About</router-link> -->
   </div>
 </template>
 <script>
 import { RouterLink } from "vue-router";
 import { narBar } from "@/utils/constant";
-const currentLocation = window.location.pathname;
 export default {
   data: function () {
     return {
       list: narBar,
-      status: currentLocation,
+      status: window.location.pathname,
     };
   },
   watch: {
-    currentLocation: function () {
-      this.status = window.location.pathname;
+    $route() {
+      this.status = this.$route.path;
     },
   },
   components: { RouterLink },
@@ -48,16 +59,23 @@ export default {
   color: black;
   text-decoration: none;
   font-size: 16px;
-  padding-left: 10px;
-  height: 45px;
+  padding-left: 13px;
+  height: 50px;
   width: 100%;
   display: flex;
   align-items: center;
-
+  gap: 10px;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 200;
   color: #344767;
 }
-.check {
+.icon {
+  background-color: #fff;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }
 </style>

@@ -15,8 +15,33 @@ export default [
       },
       {
         path: "/location",
-        name: "location",
-        component: () => import("@/pages/location/locationListView.vue"),
+        component: () => import("@/pages/location/layoutView.vue"),
+        children: [
+          {
+            path: "",
+            name: "location",
+            component: () => import("@/pages/location/locationListView.vue"),
+          },
+          {
+            path: ":id",
+            name: "detailLocation",
+            component: () => import("@/pages/location/detailView.vue"),
+          },
+        ],
+      },
+      {
+        path: "home-stay",
+        component: () => import("@/pages/homeStay/layoutViewHomeStay.vue"),
+        children: [
+          {
+            path: "",
+            component: () => import("@/pages/homeStay/listHomeStay.vue"),
+          },
+          {
+            path: ":id",
+            component: () => import("@/pages/homeStay/detailView.vue"),
+          },
+        ],
       },
       {
         path: "/about",

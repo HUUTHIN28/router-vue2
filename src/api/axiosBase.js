@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 // Add an interceptor to add token to headers for every request
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access_token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -29,7 +29,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    if (error.response && error.response.status === 401) {
+    if (error.response && error.response.status === 403) {
       // Handle unauthorized error
       const refreshToken = localStorage.getItem("refreshToken");
       if (refreshToken) {
@@ -37,8 +37,10 @@ axiosInstance.interceptors.response.use(
           const response = await axiosInstance.post("/refresh-token", {
             refreshToken,
           });
-          const newToken = response.data.token;
-          localStorage.setItem("token", newToken);
+
+          const newToken = response.data.access_token;
+          console.log("response", response);
+          localStorage.setItem("access_token", newToken);
           // Retry the original request with the new token
           error.config.headers.Authorization = `Bearer ${newToken}`;
           return axiosInstance.request(error.config);

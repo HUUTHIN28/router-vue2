@@ -92,7 +92,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
+.bodyLogin {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -153,7 +153,7 @@ export default {
 }
 .wrapper .form .row input {
   height: 100%;
-  width: 100%;
+  width: 83%;
   outline: none;
   padding-left: 60px;
   border-radius: 5px;

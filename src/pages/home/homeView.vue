@@ -24,18 +24,6 @@
     <button @click="currentTabComponent = 'Tab2'">Tab 2</button>
     <component v-bind:is="currentTabComponent"> </component>
 
-    <base-layout>
-      <template v-slot:header>
-        <h1>Here might be a page title</h1>
-      </template>
-
-      <p>A paragraph for the main content.</p>
-      <p>And another one.</p>
-
-      <template v-slot:footer>
-        <p>Here's some contact info</p>
-      </template>
-    </base-layout>
     <input type="text" v-focus />
     <div v-for="todo of storeTodo.todos" :key="todo.id" class="wrapper">
       thin

@@ -15,7 +15,8 @@ export const useAuthStore = defineStore({
       console.log("data", data);
       Auth.login(data)
         .then((res) => {
-          localStorage.setItem("token", res.data.access_token);
+          localStorage.setItem("access_token", res.data.access_token);
+          localStorage.setItem("refreshToken", res.data.refreshToken);
           router.push("/about");
         })
         .catch((err) => {
